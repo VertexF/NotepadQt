@@ -8,5 +8,6 @@
         <file>Resources/paste.png</file>
         <file>Resources/print.png</file>
         <file>Resources/saveas.png</file>
+        <file>Resources/filesave.png</file>
     </qresource>
 </RCC>

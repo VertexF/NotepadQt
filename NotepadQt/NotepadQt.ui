@@ -45,6 +45,7 @@
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
     <addaction name="actionSave_as"/>
     <addaction name="actionPrint"/>
     <addaction name="separator"/>
@@ -54,9 +55,16 @@
     <property name="title">
      <string>Edit</string>
     </property>
+    <widget class="QMenu" name="menuCut">
+     <property name="title">
+      <string>Cut</string>
+     </property>
+    </widget>
     <addaction name="actionCopy"/>
     <addaction name="actionPaste"/>
-    <addaction name="actionCut"/>
+    <addaction name="menuCut"/>
+    <addaction name="separator"/>
+    <addaction name="actionFont"/>
     <addaction name="separator"/>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
@@ -76,6 +84,7 @@
    <addaction name="actionCopy"/>
    <addaction name="actionPaste"/>
    <addaction name="actionSave_as"/>
+   <addaction name="actionSave"/>
    <addaction name="actionPrint"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -142,15 +151,6 @@
     <string>Paste</string>
    </property>
   </action>
-  <action name="actionCut">
-   <property name="icon">
-    <iconset>
-     <normaloff>Resources/cut.png</normaloff>Resources/cut.png</iconset>
-   </property>
-   <property name="text">
-    <string>Cut</string>
-   </property>
-  </action>
   <action name="actionUndo">
    <property name="text">
     <string>Undo</string>
@@ -159,6 +159,20 @@
   <action name="actionRedo">
    <property name="text">
     <string>Redo</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset>
+     <normaloff>Resources/filesave.png</normaloff>Resources/filesave.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionFont">
+   <property name="text">
+    <string>Font...</string>
    </property>
   </action>
  </widget>

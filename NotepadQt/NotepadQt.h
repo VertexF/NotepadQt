@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QPrinter>
 #include <QPrintDialog>
+#include <QFontDialog>
 #include "ui_NotepadQt.h"
 
 #include <iostream>
@@ -27,6 +28,8 @@ public slots:
 	void on_actionOpen_triggered();
 	void on_actionSave_as_triggered();
 	void on_actionPrint_triggered();
+	void on_actionSave_triggered();
+	void on_actionFont_triggered();
 private:
 
 	Ui::NotepadQt* ui;

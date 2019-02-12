@@ -33,9 +33,10 @@ public:
     QAction *actionExit;
     QAction *actionCopy;
     QAction *actionPaste;
-    QAction *actionCut;
     QAction *actionUndo;
     QAction *actionRedo;
+    QAction *actionSave;
+    QAction *actionFont;
     QWidget *centralWidget;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
@@ -43,6 +44,7 @@ public:
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEdit;
+    QMenu *menuCut;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -86,15 +88,17 @@ public:
         QIcon icon6;
         icon6.addFile(QString::fromUtf8("Resources/paste.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionPaste->setIcon(icon6);
-        actionCut = new QAction(NotepadQt);
-        actionCut->setObjectName(QString::fromUtf8("actionCut"));
-        QIcon icon7;
-        icon7.addFile(QString::fromUtf8("Resources/cut.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionCut->setIcon(icon7);
         actionUndo = new QAction(NotepadQt);
         actionUndo->setObjectName(QString::fromUtf8("actionUndo"));
         actionRedo = new QAction(NotepadQt);
         actionRedo->setObjectName(QString::fromUtf8("actionRedo"));
+        actionSave = new QAction(NotepadQt);
+        actionSave->setObjectName(QString::fromUtf8("actionSave"));
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8("Resources/filesave.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSave->setIcon(icon7);
+        actionFont = new QAction(NotepadQt);
+        actionFont->setObjectName(QString::fromUtf8("actionFont"));
         centralWidget = new QWidget(NotepadQt);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayoutWidget = new QWidget(centralWidget);
@@ -118,6 +122,8 @@ public:
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuEdit = new QMenu(menuBar);
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
+        menuCut = new QMenu(menuEdit);
+        menuCut->setObjectName(QString::fromUtf8("menuCut"));
         NotepadQt->setMenuBar(menuBar);
         mainToolBar = new QToolBar(NotepadQt);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -130,13 +136,16 @@ public:
         menuBar->addAction(menuEdit->menuAction());
         menuFile->addAction(actionNew);
         menuFile->addAction(actionOpen);
+        menuFile->addAction(actionSave);
         menuFile->addAction(actionSave_as);
         menuFile->addAction(actionPrint);
         menuFile->addSeparator();
         menuFile->addAction(actionExit);
         menuEdit->addAction(actionCopy);
         menuEdit->addAction(actionPaste);
-        menuEdit->addAction(actionCut);
+        menuEdit->addAction(menuCut->menuAction());
+        menuEdit->addSeparator();
+        menuEdit->addAction(actionFont);
         menuEdit->addSeparator();
         menuEdit->addAction(actionUndo);
         menuEdit->addAction(actionRedo);
@@ -145,12 +154,12 @@ public:
         mainToolBar->addAction(actionCopy);
         mainToolBar->addAction(actionPaste);
         mainToolBar->addAction(actionSave_as);
+        mainToolBar->addAction(actionSave);
         mainToolBar->addAction(actionPrint);
 
         retranslateUi(NotepadQt);
         QObject::connect(actionExit, SIGNAL(triggered()), NotepadQt, SLOT(close()));
         QObject::connect(actionCopy, SIGNAL(triggered()), textEdit, SLOT(copy()));
-        QObject::connect(actionCut, SIGNAL(triggered()), textEdit, SLOT(cut()));
         QObject::connect(actionNew, SIGNAL(triggered()), textEdit, SLOT(clear()));
         QObject::connect(actionPaste, SIGNAL(triggered()), textEdit, SLOT(paste()));
         QObject::connect(actionRedo, SIGNAL(triggered()), textEdit, SLOT(redo()));
@@ -169,11 +178,13 @@ public:
         actionExit->setText(QApplication::translate("NotepadQt", "Exit", nullptr));
         actionCopy->setText(QApplication::translate("NotepadQt", "Copy", nullptr));
         actionPaste->setText(QApplication::translate("NotepadQt", "Paste", nullptr));
-        actionCut->setText(QApplication::translate("NotepadQt", "Cut", nullptr));
         actionUndo->setText(QApplication::translate("NotepadQt", "Undo", nullptr));
         actionRedo->setText(QApplication::translate("NotepadQt", "Redo", nullptr));
+        actionSave->setText(QApplication::translate("NotepadQt", "Save", nullptr));
+        actionFont->setText(QApplication::translate("NotepadQt", "Font...", nullptr));
         menuFile->setTitle(QApplication::translate("NotepadQt", "File", nullptr));
         menuEdit->setTitle(QApplication::translate("NotepadQt", "Edit", nullptr));
+        menuCut->setTitle(QApplication::translate("NotepadQt", "Cut", nullptr));
     } // retranslateUi
 
 };
